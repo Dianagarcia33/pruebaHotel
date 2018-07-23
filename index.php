@@ -80,7 +80,7 @@
                     <label>HABITACIONES</label>
                     <select class="form-control" name="habitaciones">
                       <?php 
-                      for ($i=0; $i < 10; $i++) { 
+                      for ($i=1; $i <= 10; $i++) { 
                         echo "<option>".$i."</option>";
                       }
                       ?>
@@ -90,7 +90,7 @@
                     <label>ADULTOS</label>
                     <select class="form-control" name="habitaciones">
                       <?php 
-                      for ($i=0; $i < 10; $i++) { 
+                      for ($i=1; $i <= 10; $i++) { 
                         echo "<option>".$i."</option>";
                       }
                       ?>
