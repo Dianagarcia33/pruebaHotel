@@ -59,6 +59,7 @@
                             for ($i=0; $i < count($datapost->destination['datos']) ; $i++) { 
                                 if (strpos($datapost->destination['datos'][$i]['name']['content'], $dato) !== false) {
                                     $resultado.=$datapost->destination['datos'][$i]['name']['content']."<br/>";
+                                    $nombre = array('codigo' => ,  );
                                 }
                             }
                             break;
