@@ -59,14 +59,11 @@
                             $datapost->destination = array('datos'=>$data['destinations']);
                             for ($i=0; $i < count($datapost->destination['datos']) ; $i++) { 
                                 if (strpos($datapost->destination['datos'][$i]['name']['content'], $dato) !== false) {
-<<<<<<< HEAD
                                     //$resultado.=$datapost->destination['datos'][$i]['name']['content']."<br/>";
                                     echo array('codigo' => $datapost->destination['datos'][$i]['code'],
                                     'nombre'=>$datapost->destination['datos'][$i]['name']['content']);
                                     $validacion=true;
-=======
-                                    $resultado.=$datapost->destination['datos'][$i]['name']['content']."<br/>";
->>>>>>> e0457ba2ca97f13049bb27c61dbddcdf06cfcad3
+                                    //$resultado.=$datapost->destination['datos'][$i]['name']['content']."<br/>";
                                 }
                             }
                             break;
@@ -80,14 +77,9 @@
             }catch(Exception $e){
                 $resultado="Error while sending request, reason: %s\n".$e->getMessage();
             }
-<<<<<<< HEAD
-        }while ($resultado==""||$validacion==false);
-        echo json_encode($resultado);
-=======
-        }while ($resultado=="");
-        print_r($resultado);
->>>>>>> e0457ba2ca97f13049bb27c61dbddcdf06cfcad3
 
+        }while ($resultado==""||$validacion==false||$this->fin<5000);
+        echo json_encode($resultado);
     }
 
 
