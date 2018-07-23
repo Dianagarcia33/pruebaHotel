@@ -10,14 +10,14 @@
             public function consultar(){
               //     $apiKey = 'mpqfutedsbz583qaryjz74sa';
             //$Secret = 'wDU5fsXg2P';
-            $apiKey = "5vd4hx4m7twegykbb24v9aps";
-            $Secret = "UQgAQGXXUD";
+            $apiKey = "nfpx65hc8qh6dtqkq37gxm3x";
+            $Secret = "RY8ehQ8cUs";
          //      $apiKey = 'x4snycwk7rzrezqjxya3esus';
     //$Secret = 'suMb6YAGXk';
             $signature = hash("sha256", $apiKey.$Secret.time());
            // $endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/locations/destinations?&content=cali&fields=all&";
             //$endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/hotels?fields=all&language=ENG&from=125&to=250&destinationCode=MZL";
-            $endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/hotels?fields=all&destinationCode=MZL&language=ENG&from=1&to=100";
+            $endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/hotels?fields=all&destinationCode=MZL&language=ENG&from=10&to=100";
 
 
 
@@ -41,7 +41,7 @@
                         //return $resp;
 
                 $datapost = new stdClass();
-            //    print_r($data);
+                
                 //$datapost = array('checkIn'=>$resp['stay']['checkIn'], 'checkOut'=>$resp['stay']['checkOut']);
                 /*$datapost->occupancies = array(
                     array('rooms'=>$data['occupancies'][0]['rooms'], 'adults'=>$data['occupancies'][0]['adults'], 'children'=>$data['occupancies'][0]['children'], 'paxes'=>array(
@@ -49,12 +49,14 @@
                         //array('type'=>'AD','age'=>30)
                     ))
                 );*/
-                $datapost->destination = array('code'=>$data['hotels']);
+                $datapost->destination = array('datos'=>$data['hotels']);
+                print_r($datapost);
                // $datapost->hotels = array('hotel'=>$data['hotels']['hotel']);
               //  $datapost->filter = array('maxRooms'=>5,'minRate'=>100.000,'maxRate'=>1700.000,'maxRatesPerRoom'=>2);
              //   return $datapost;
-                print_r($datapost->destination);
-
+                print_r($datapost->destination['datos'][0]['code']);
+                print_r($datapost->destination['datos'][0]['name']['content']);
+                print_r($datapost->destination['datos'][0]['code']['content']);
 
                         break;
                     default:
