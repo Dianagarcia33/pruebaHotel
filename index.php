@@ -60,7 +60,8 @@
                 <div class="row">
                   <div class="col-md">
                     <label>DESTINO</label> 
-                    <input class="form-control" name="txtDestino" id="txtDestino" onkeyup="buscarCiudad(this.value)">                 
+                    <input class="form-control" name="txtDestino" id="txtDestino" onkeyup="buscarCiudad(this.value)">
+                    <input type="hidden" name="txtCodigoDestino" id="txtCodigoDestino">                 
                   </div>
                 </div>
                 <div class="row">
@@ -163,8 +164,6 @@
         success:function(res){
           console.log("res ");
           console.log(res);
-          var aux = Json.parse(res);
-          console.log(aux.nombre);
           document.getElementById('resultados').innerHTML = res;
         }
       });

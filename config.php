@@ -40,6 +40,7 @@
             $this->inicio=$this->fin-999;
             echo "inicio ".$this->inicio." fin ".$this->fin;
             $endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/locations/destinations?fields=all&language=ENG&from=".$this->inicio."&to=".$this->fin;
+            $validacion=false;
             try{
                 // Get cURL resource
                 $curl = curl_init();
@@ -61,8 +62,9 @@
                             for ($i=0; $i < count($datapost->destination['datos']) ; $i++) { 
                                 if (strpos($datapost->destination['datos'][$i]['name']['content'], $dato) !== false) {
                                     //$resultado.=$datapost->destination['datos'][$i]['name']['content']."<br/>";
-                                    $resultado = array('codigo' => $datapost->destination['datos'][$i]['code'],
+                                    echo array('codigo' => $datapost->destination['datos'][$i]['code'],
                                     'nombre'=>$datapost->destination['datos'][$i]['name']['content']);
+                                    $validacion=true;
                                 }
                             }
                             break;
@@ -76,7 +78,7 @@
             }catch(Exception $e){
                 $resultado="Error while sending request, reason: %s\n".$e->getMessage();
             }
-        }while ($resultado=="");
+        }while ($resultado==""||$validacion==false);
         echo json_encode($resultado);
 
     }
