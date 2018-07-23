@@ -10,14 +10,16 @@
             public function consultar(){
               //     $apiKey = 'mpqfutedsbz583qaryjz74sa';
             //$Secret = 'wDU5fsXg2P';
-           // $apiKey = "5vd4hx4m7twegykbb24v9aps";
-            //$Secret = "UQgAQGXXUD";
-               $apiKey = 'x4snycwk7rzrezqjxya3esus';
-    $Secret = 'suMb6YAGXk';
+            $apiKey = "5vd4hx4m7twegykbb24v9aps";
+            $Secret = "UQgAQGXXUD";
+         //      $apiKey = 'x4snycwk7rzrezqjxya3esus';
+    //$Secret = 'suMb6YAGXk';
             $signature = hash("sha256", $apiKey.$Secret.time());
            // $endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/locations/destinations?&content=cali&fields=all&";
-            $endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/hotels?fields=all&language=ENG&from=125&to=250&destinationCode=MZL";
-           
+            //$endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/hotels?fields=all&language=ENG&from=125&to=250&destinationCode=MZL";
+            $endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/hotels?fields=all&destinationCode=MZL&language=ENG&from=1&to=100";
+
+
 
 
             try{
@@ -34,9 +36,28 @@
             if (!curl_errno($curl)) {
                 switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
                     case 200:  # OK
-                      //  $data = json_decode($resp);
-                        $data = json_decode(json_encode($resp));
-                        print_r($data);
+                        $data = json_decode($resp,true);
+
+                        
+
+                        //return $resp;
+
+                    $datapost = new stdClass();
+             //  print_r($data);
+               //$datapost = array('checkIn'=>$resp['stay']['checkIn'], 'checkOut'=>$resp['stay']['checkOut']);
+                /*$datapost->occupancies = array(
+                    array('rooms'=>$data['occupancies'][0]['rooms'], 'adults'=>$data['occupancies'][0]['adults'], 'children'=>$data['occupancies'][0]['children'], 'paxes'=>array(
+                        //array('type'=>'AD','age'=>30),
+                        //array('type'=>'AD','age'=>30)
+                    ))
+                );*/
+                $datapost->destination = array('code'=>$data['hotels']);
+               // $datapost->hotels = array('hotel'=>$data['hotels']['hotel']);
+              //  $datapost->filter = array('maxRooms'=>5,'minRate'=>100.000,'maxRate'=>1700.000,'maxRatesPerRoom'=>2);
+             //   return $datapost;
+//                print_r($datapost->destination);
+
+
                         break;
                     default:
                         echo 'Unexpected HTTP code: ', $http_code, "\n";
@@ -50,6 +71,8 @@
                 printf("Error while sending request, reason: %s\n",$e->getMessage());
             }
             }
+
+
 
 
 

@@ -8,4 +8,6 @@
 
 	$result = $conexion->consultar();
 
+	echo $result;
+
 ?>
