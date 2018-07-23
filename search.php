@@ -1,12 +1,20 @@
 <?php 
 	
-	echo "<h1>Resultado</h1>";
-
 	include_once("config.php");
 
 	$conexion = new Config();
-
-	$result = $conexion->consultar();
+	switch ($_POST['accion']) {
+		
+		case 'buscarCiudad':
+			$result = $conexion->consultarDestino($_POST['valor']);
+			break;
+		
+		case 'buscarHotel':
+			echo "<h1>Resultado</h1>";
+			$result = $conexion->consultarHotel();
+			break;
+	}
+	
 
 	echo $result;
 

@@ -60,24 +60,24 @@
                 <div class="row">
                   <div class="col-md">
                     <label>DESTINO</label>
-                    <input type="text" class="form-control" name="destino">                   
+                    <input type="text" class="form-control" name="txtDestino" onkeyup="buscarCiudad(this.value)">                   
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md">
                     <label>CHECK-IN</label>
-                    <input type="date" class="form-control" name="checkin">
+                    <input type="date" class="form-control" name="dateDheckin">
                   </div>
                   <div class="col-md">
                     <label>CHECK-OUT</label>
-                    <input type="date" class="form-control" name="checkout">
+                    <input type="date" class="form-control" name="dateCheckout">
                   </div>
 
                 </div>
                 <div class="row">
                   <div class="col-md">
                     <label>HABITACIONES</label>
-                    <select class="form-control" name="habitaciones">
+                    <select class="form-control" name="cmbHabitaciones">
                       <?php 
                       for ($i=1; $i <= 10; $i++) { 
                         echo "<option>".$i."</option>";
@@ -87,7 +87,7 @@
                   </div>
                   <div class="col-md">
                     <label>ADULTOS</label>
-                    <select class="form-control" name="habitaciones">
+                    <select class="form-control" name="cmbAdultos">
                       <?php 
                       for ($i=1; $i <= 10; $i++) { 
                         echo "<option>".$i."</option>";
@@ -97,7 +97,7 @@
                   </div>
                   <div class="col-md">
                     <label>MENORES</label>
-                    <select class="form-control" name="habitaciones">
+                    <select class="form-control" name="cmboMenores">
                       <?php 
                       for ($i=0; $i < 10; $i++) { 
                         echo "<option>".$i."</option>";
@@ -140,8 +140,8 @@
 </body>
 </html>
 <script>
-    
-    function buscarHotel(){
+    function buscarHotel(valor){
+      console.log(valor);
       $.ajax({
         data:$('#frmHotel').serialize(),
         type: 'post',
@@ -150,6 +150,20 @@
           console.log(res);
           document.getElementById('resultados').innerHTML = res;
 
+        }
+      });
+    }
+
+    function buscarCiudad(valor){
+      console.log(valor);
+      $.ajax({
+        data:"valor="+valor+"&accion=buscarCiudad",
+        type: 'post',
+        url: 'search.php',
+        success:function(res){
+          console.log("res ");
+          console.log(res);
+          document.getElementById('resultados').innerHTML = res;
         }
       });
     }
