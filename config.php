@@ -3,21 +3,24 @@
     class Config{
 
         public function __construct(){
+
+
          
         }
 
 
             public function consultar(){
-              //     $apiKey = 'mpqfutedsbz583qaryjz74sa';
-            //$Secret = 'wDU5fsXg2P';
-            $apiKey = "nfpx65hc8qh6dtqkq37gxm3x";
-            $Secret = "RY8ehQ8cUs";
+                  $apiKey = 'mpqfutedsbz583qaryjz74sa';
+            $Secret = 'wDU5fsXg2P';
+            //$apiKey = "nfpx65hc8qh6dtqkq37gxm3x";
+            //$Secret = "RY8ehQ8cUs";
          //      $apiKey = 'x4snycwk7rzrezqjxya3esus';
     //$Secret = 'suMb6YAGXk';
             $signature = hash("sha256", $apiKey.$Secret.time());
            // $endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/locations/destinations?&content=cali&fields=all&";
-            //$endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/hotels?fields=all&language=ENG&from=125&to=250&destinationCode=MZL";
-            $endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/hotels?fields=all&destinationCode=MZL&language=ENG&from=10&to=100";
+            $endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/locations/destinations?fields=Columbia&countryId=US&language=ENG&from=1&to=100";
+           // $endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/locations/destinations?fields=all&language=ENG&from=1&to=100&Code=Manizales";
+          //  $endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/hotels?fields=all&language=ENG&from=10&to=100";
 //            $endpoint = "https://api.test.hotelbeds.com/hotel-api/1.0/bookings?start=2015-09-10&end=2015-09-15&filterType=CREATION&status=CONFIRMED&from=1&to=25";
 
 
@@ -42,7 +45,7 @@
 
                         //return $resp;
 
-                $datapost = new stdClass();
+           //     $datapost = new stdClass();
                 
                 //$datapost = array('checkIn'=>$resp['stay']['checkIn'], 'checkOut'=>$resp['stay']['checkOut']);
                 /*$datapost->occupancies = array(
@@ -51,14 +54,14 @@
                         //array('type'=>'AD','age'=>30)
                     ))
                 );*/
-                $datapost->destination = array('datos'=>$data['hotels']);
-          //      print_r($datapost);
+            //    $datapost->destination = array('datos'=>$data['hotels']);
+                print_r($data);
                // $datapost->hotels = array('hotel'=>$data['hotels']['hotel']);
               //  $datapost->filter = array('maxRooms'=>5,'minRate'=>100.000,'maxRate'=>1700.000,'maxRatesPerRoom'=>2);
               //  return $resp;
-                
-                print_r($datapost->destination['datos'][0]['name']['content']);
-                print_r($datapost->destination['datos'][0]['description']['content']);
+
+            //    print_r($datapost->destination['datos'][0]['name']['content']);
+              //  print_r($datapost->destination['datos'][0]['description']['content']);
 
                         break;
                     default:
