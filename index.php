@@ -61,10 +61,10 @@
                   <div class="col-md">
                     <label>DESTINO</label> 
                     <input class="form-control" name="txtDestino" id="txtDestino" onkeyup="buscarCiudad(this.value)">    
-                    <div id="mostrarResultadoBuscar" class="float-right" name="mostrarResultadoBuscar" "></div>             
+                    <div id="mostrarResultadoBuscar" class="float-right" name="mostrarResultadoBuscar" style="background: #000;width: 100%;height: 100%;z-index: 1;"></div>             
                   </div>
                 </div>
-                <div class="row">
+                <div class="row" style="z-index: -1;">
                   <div class="col-md">
                     <label>CHECK-IN</label>
                     <input type="date" class="form-control" name="dateDheckin">
@@ -109,7 +109,6 @@
                 </div>
                 <div class="row  mt-3">
                   <div class="col-md">
-
                     <div class="mx-auto" style="width: 200px;"><input type="button" name="btnEnviar" onclick="buscarHotel()" class="btn  btn-light mx-auto" value="Buscar"> 
                     </div>                  
                   </div>
