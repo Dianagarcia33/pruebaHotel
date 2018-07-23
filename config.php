@@ -23,8 +23,10 @@
         //$Secret="7yAuq2f8GA";
         //$apiKey="mpqfutedsbz583qaryjz74sa";
         //$Secret="wDU5fsXg2P";
-        $apiKey="dcbqt4fa3jzs7592hhqhdm3d";
-        $Secret="bqNxnNnTVQ";
+        //$apiKey="dcbqt4fa3jzs7592hhqhdm3d";
+        //$Secret="bqNxnNnTVQ";
+        $apiKey="9a86pptedfuyxkttkzjdzwv8";
+        $Secret="3tG8FejFbB";
         $signature = hash("sha256", $apiKey.$Secret.time());
         //$endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/locations/destinations?&content=cali&fields=all&";
         //$endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/locations/destinations?fields=Columbia&countryId=US&language=ENG&from=1&to=100";
@@ -58,8 +60,9 @@
                             $datapost->destination = array('datos'=>$data['destinations']);
                             for ($i=0; $i < count($datapost->destination['datos']) ; $i++) { 
                                 if (strpos($datapost->destination['datos'][$i]['name']['content'], $dato) !== false) {
-                                    $resultado.=$datapost->destination['datos'][$i]['name']['content']."<br/>";
-                                    $nombre = array('codigo' => ,  );
+                                    //$resultado.=$datapost->destination['datos'][$i]['name']['content']."<br/>";
+                                    $resultado = array('codigo' => $datapost->destination['datos'][$i]['code'],
+                                    'nombre'=>$datapost->destination['datos'][$i]['name']['content']);
                                 }
                             }
                             break;
@@ -74,7 +77,7 @@
                 $resultado="Error while sending request, reason: %s\n".$e->getMessage();
             }
         }while ($resultado=="");
-        print_r($resultado);
+        echo json_encode($resultado);
 
     }
 
