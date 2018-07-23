@@ -23,10 +23,8 @@
         //$Secret="7yAuq2f8GA";
         //$apiKey="mpqfutedsbz583qaryjz74sa";
         //$Secret="wDU5fsXg2P";
-        //$apiKey="dcbqt4fa3jzs7592hhqhdm3d";
-        //$Secret="bqNxnNnTVQ";
-        $apiKey="9a86pptedfuyxkttkzjdzwv8";
-        $Secret="3tG8FejFbB";
+        $apiKey="dcbqt4fa3jzs7592hhqhdm3d";
+        $Secret="bqNxnNnTVQ";
         $signature = hash("sha256", $apiKey.$Secret.time());
         //$endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/locations/destinations?&content=cali&fields=all&";
         //$endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/locations/destinations?fields=Columbia&countryId=US&language=ENG&from=1&to=100";
@@ -61,10 +59,14 @@
                             $datapost->destination = array('datos'=>$data['destinations']);
                             for ($i=0; $i < count($datapost->destination['datos']) ; $i++) { 
                                 if (strpos($datapost->destination['datos'][$i]['name']['content'], $dato) !== false) {
+<<<<<<< HEAD
                                     //$resultado.=$datapost->destination['datos'][$i]['name']['content']."<br/>";
                                     echo array('codigo' => $datapost->destination['datos'][$i]['code'],
                                     'nombre'=>$datapost->destination['datos'][$i]['name']['content']);
                                     $validacion=true;
+=======
+                                    $resultado.=$datapost->destination['datos'][$i]['name']['content']."<br/>";
+>>>>>>> e0457ba2ca97f13049bb27c61dbddcdf06cfcad3
                                 }
                             }
                             break;
@@ -78,8 +80,13 @@
             }catch(Exception $e){
                 $resultado="Error while sending request, reason: %s\n".$e->getMessage();
             }
+<<<<<<< HEAD
         }while ($resultado==""||$validacion==false);
         echo json_encode($resultado);
+=======
+        }while ($resultado=="");
+        print_r($resultado);
+>>>>>>> e0457ba2ca97f13049bb27c61dbddcdf06cfcad3
 
     }
 

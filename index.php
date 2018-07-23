@@ -60,8 +60,13 @@
                 <div class="row">
                   <div class="col-md">
                     <label>DESTINO</label> 
+<<<<<<< HEAD
                     <input class="form-control" name="txtDestino" id="txtDestino" onkeyup="buscarCiudad(this.value)">
                     <input type="hidden" name="txtCodigoDestino" id="txtCodigoDestino">                 
+=======
+                    <input class="form-control" name="txtDestino" id="txtDestino" onkeyup="buscarCiudad(this.value)">    
+                    <div id="mostrarResultadoBuscar" class="float-right" name="mostrarResultadoBuscar" "></div>             
+>>>>>>> e0457ba2ca97f13049bb27c61dbddcdf06cfcad3
                   </div>
                 </div>
                 <div class="row">
@@ -164,6 +169,12 @@
         success:function(res){
           console.log("res ");
           console.log(res);
+<<<<<<< HEAD
+=======
+          document.getElementById('mostrarResultadoBuscar').innerHTML = res;
+          var aux = Json.parse(res);
+          console.log(aux.nombre);
+>>>>>>> e0457ba2ca97f13049bb27c61dbddcdf06cfcad3
           document.getElementById('resultados').innerHTML = res;
         }
       });
