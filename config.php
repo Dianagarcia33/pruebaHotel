@@ -59,7 +59,6 @@
                             for ($i=0; $i < count($datapost->destination['datos']) ; $i++) { 
                                 if (strpos($datapost->destination['datos'][$i]['name']['content'], $dato) !== false) {
                                     $resultado.=$datapost->destination['datos'][$i]['name']['content']."<br/>";
-
                                 }
                             }
                             break;
@@ -74,7 +73,7 @@
                 $resultado="Error while sending request, reason: %s\n".$e->getMessage();
             }
         }while ($resultado=="");
-      print_r($resultado);
+        print_r($resultado);
 
     }
 

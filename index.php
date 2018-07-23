@@ -165,6 +165,9 @@
           console.log("res ");
           console.log(res);
           document.getElementById('mostrarResultadoBuscar').innerHTML = res;
+          var aux = Json.parse(res);
+          console.log(aux.nombre);
+          document.getElementById('resultados').innerHTML = res;
         }
       });
     }
