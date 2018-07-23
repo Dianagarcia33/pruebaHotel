@@ -35,13 +35,6 @@
           </a>
         </li>
 
-
-        <li class="nav-item border ">
-          <a class="nav-link" href="#">
-            Hola!!!
-          </a>
-        </li>
-
       </ul>
     </div>
   </nav>
