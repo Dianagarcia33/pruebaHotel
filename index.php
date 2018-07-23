@@ -59,9 +59,13 @@
               <div class="container-fluid mt-3">
                 <div class="row">
                   <div class="col-md">
-                    <label>DESTINO</label> 
-                    <input class="form-control" name="txtDestino" id="txtDestino" onkeyup="buscarCiudad(this.value)">    
+                    <label>DESTINO</label> HEAD
+                    <input class="form-control" name="txtDestino" id="txtDestino" onkeyup="buscarCiudad(this.value)">
+                    <input type="hidden" name="txtCodigoDestino" id="txtCodigoDestino">                 
+ 
+
                     <div id="mostrarResultadoBuscar" class="float-right" name="mostrarResultadoBuscar" style="background: #000;width: 100%;height: 100%;z-index: 1;"></div>             
+
                   </div>
                 </div>
                 <div class="row" style="z-index: -1;">
@@ -163,6 +167,7 @@
         success:function(res){
           console.log("res ");
           console.log(res);
+
           document.getElementById('mostrarResultadoBuscar').innerHTML = res;
           var aux = Json.parse(res);
           console.log(aux.nombre);
