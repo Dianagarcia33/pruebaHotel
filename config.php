@@ -13,10 +13,14 @@
         //$Secret = 'wDU5fsXg2P';
         //$apiKey = "nfpx65hc8qh6dtqkq37gxm3x";
         //$Secret = "RY8ehQ8cUs";
-        $apiKey = 'x4snycwk7rzrezqjxya3esus';
-        $Secret = 'suMb6YAGXk';
+        //$apiKey = 'x4snycwk7rzrezqjxya3esus';
+        //$Secret = 'suMb6YAGXk';
         //$apiKey = "wpedjqjwv62vh84wze8srbqv";
         //$Secret = "AqWSXwmaN9";
+        //$apiKey="u6zxr3fsrvyb78gv9m3w45gp";
+        //$Secret="PARcy9M4FK";
+        $apiKey="m7rw3xqh73jfrmftzt6vspd7";
+        $Secret="7yAuq2f8GA";
         $signature = hash("sha256", $apiKey.$Secret.time());
         //$endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/locations/destinations?&content=cali&fields=all&";
         //$endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/locations/destinations?fields=Columbia&countryId=US&language=ENG&from=1&to=100";
@@ -26,8 +30,8 @@
         $resultado="";
         do{
             $resultado="";
-            $this->fin+=10;
-            $this->inicio=$this->fin-9;
+            $this->fin+=1000;
+            $this->inicio=$this->fin-999;
             echo "inicio ".$this->inicio." fin ".$this->fin;
             $endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/locations/destinations?fields=all&language=ENG&from=".$this->inicio."&to=".$this->fin;
             try{
@@ -48,8 +52,6 @@
                             //return $resp;
                             $datapost = new stdClass();
                             $datapost->destination = array('datos'=>$data['destinations']);
-                            
-                            print_r("size ".count($datapost->destination['datos']));
                             for ($i=0; $i < count($datapost->destination['datos']) ; $i++) { 
                                 if (strpos($datapost->destination['datos'][$i]['name']['content'], $dato) !== false) {
                                     $resultado.=$datapost->destination['datos'][$i]['name']['content']."<br/>";
@@ -57,14 +59,14 @@
                             }
                             break;
                         default:
-                            echo 'Unexpected HTTP code: ', $http_code, "\n";
-                            echo $resp;
+                            $resultado= 'Unexpected HTTP code: '. $http_code. "\n";
+                            $resultado.= $resp;
                     }
                 }
                 // Close request to clear up some resources
                 curl_close($curl);
             }catch(Exception $e){
-                printf("Error while sending request, reason: %s\n",$e->getMessage());
+                $resultado="Error while sending request, reason: %s\n".$e->getMessage();
             }
         }while ($resultado=="");
         print_r($resultado);
