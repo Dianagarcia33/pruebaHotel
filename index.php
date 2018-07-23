@@ -60,7 +60,8 @@
                 <div class="row">
                   <div class="col-md">
                     <label>DESTINO</label> 
-                    <input class="form-control" name="txtDestino" id="txtDestino" onkeyup="buscarCiudad(this.value)">                 
+                    <input class="form-control" name="txtDestino" id="txtDestino" onkeyup="buscarCiudad(this.value)">    
+                    <div id="mostrarResultadoBuscar" class="float-right" name="mostrarResultadoBuscar" "></div>             
                   </div>
                 </div>
                 <div class="row">
@@ -163,7 +164,7 @@
         success:function(res){
           console.log("res ");
           console.log(res);
-          document.getElementById('resultados').innerHTML = res;
+          document.getElementById('mostrarResultadoBuscar').innerHTML = res;
         }
       });
     }
