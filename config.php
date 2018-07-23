@@ -40,9 +40,9 @@
 
                         //return $resp;
 
-                    $datapost = new stdClass();
-               print_r($data);
-               //$datapost = array('checkIn'=>$resp['stay']['checkIn'], 'checkOut'=>$resp['stay']['checkOut']);
+                $datapost = new stdClass();
+            //    print_r($data);
+                //$datapost = array('checkIn'=>$resp['stay']['checkIn'], 'checkOut'=>$resp['stay']['checkOut']);
                 /*$datapost->occupancies = array(
                     array('rooms'=>$data['occupancies'][0]['rooms'], 'adults'=>$data['occupancies'][0]['adults'], 'children'=>$data['occupancies'][0]['children'], 'paxes'=>array(
                         //array('type'=>'AD','age'=>30),
@@ -53,7 +53,7 @@
                // $datapost->hotels = array('hotel'=>$data['hotels']['hotel']);
               //  $datapost->filter = array('maxRooms'=>5,'minRate'=>100.000,'maxRate'=>1700.000,'maxRatesPerRoom'=>2);
              //   return $datapost;
-//                print_r($datapost->destination);
+                print_r($datapost->destination);
 
 
                         break;
