@@ -18,7 +18,7 @@
            // $endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/locations/destinations?&content=cali&fields=all&";
             //$endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/hotels?fields=all&language=ENG&from=125&to=250&destinationCode=MZL";
             $endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/hotels?fields=all&destinationCode=MZL&language=ENG&from=10&to=100";
-
+//            $endpoint = "https://api.test.hotelbeds.com/hotel-api/1.0/bookings?start=2015-09-10&end=2015-09-15&filterType=CREATION&status=CONFIRMED&from=1&to=25";
 
 
 
@@ -32,6 +32,8 @@
             CURLOPT_HTTPHEADER => ['Accept:application/json' , 'Api-key:'.$apiKey.'', 'X-Signature:'.$signature.'']));
             // Send the request & save response to $resp
             $resp = curl_exec($curl);
+
+
             // Check HTTP status code
             if (!curl_errno($curl)) {
                 switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
@@ -50,13 +52,13 @@
                     ))
                 );*/
                 $datapost->destination = array('datos'=>$data['hotels']);
-                print_r($datapost);
+          //      print_r($datapost);
                // $datapost->hotels = array('hotel'=>$data['hotels']['hotel']);
               //  $datapost->filter = array('maxRooms'=>5,'minRate'=>100.000,'maxRate'=>1700.000,'maxRatesPerRoom'=>2);
-             //   return $datapost;
-                print_r($datapost->destination['datos'][0]['code']);
+              //  return $resp;
+                
                 print_r($datapost->destination['datos'][0]['name']['content']);
-                print_r($datapost->destination['datos'][0]['code']['content']);
+                print_r($datapost->destination['datos'][0]['description']['content']);
 
                         break;
                     default:
