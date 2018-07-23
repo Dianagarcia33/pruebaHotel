@@ -15,5 +15,6 @@
 			break;
 	}
 	
+	echo $result;
 
 ?>

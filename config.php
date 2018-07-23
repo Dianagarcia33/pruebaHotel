@@ -23,8 +23,10 @@
         //$Secret="7yAuq2f8GA";
         //$apiKey="mpqfutedsbz583qaryjz74sa";
         //$Secret="wDU5fsXg2P";
-        $apiKey="dcbqt4fa3jzs7592hhqhdm3d";
-        $Secret="bqNxnNnTVQ";
+        //$apiKey="dcbqt4fa3jzs7592hhqhdm3d";
+        //$Secret="bqNxnNnTVQ";
+        $apiKey="ddts9fx4nkd8nwdspaxbtqb9";
+        $Secret="Q6JXqyR5V9";
         $signature = hash("sha256", $apiKey.$Secret.time());
         //$endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/locations/destinations?&content=cali&fields=all&";
         //$endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/locations/destinations?fields=Columbia&countryId=US&language=ENG&from=1&to=100";
@@ -59,26 +61,19 @@
                             $datapost->destination = array('datos'=>$data['destinations']);
                             for ($i=0; $i < count($datapost->destination['datos']) ; $i++) { 
                                 if (strpos($datapost->destination['datos'][$i]['name']['content'], $dato) !== false) {
-<<<<<<< HEAD
-=======
-
->>>>>>> 721b888be4e0615c101f1229c099b7cbd9f9a2d4
                                     //$resultado.=$datapost->destination['datos'][$i]['name']['content']."<br/>";
-                                    echo array('codigo' => $datapost->destination['datos'][$i]['code'],
-                                    'nombre'=>$datapost->destination['datos'][$i]['name']['content']);
-                                    $validacion=true;
-<<<<<<< HEAD
-                                    //$resultado.=$datapost->destination['datos'][$i]['name']['content']."<br/>";
-=======
-
-                                 //   $resultado.=$datapost->destination['datos'][$i]['name']['content']."<br/>";
-
->>>>>>> 721b888be4e0615c101f1229c099b7cbd9f9a2d4
+                                    //echo json_encode(array('codigo' => $datapost->destination['datos'][$i]['code'],
+                                    //'nombre'=>$datapost->destination['datos'][$i]['name']['content']));
+                                    //$validacion=true;
+                                    $resultado.='<a class="list-group-item list-group-item-action" id="listDestino" data-toggle="list" href="#txtDestino" role="tab" aria-controls="profile">'.$datapost->destination['datos'][$i]['name']['content'].'</a>'.
+                                    '<input type="hidden" name="txtCodigoDestino" id="txtCodigoDestino" value="'.
+                                    $datapost->destination['datos'][$i]['code'].'"">'.
+                                    "<br/>";
                                 }
                             }
                             break;
                         default:
-                            $resultado= 'Unexpected HTTP code: '. $http_code. "\n";
+                            $resultado= 'Unexpected HTTP code: '. $http_code;
                             $resultado.= $resp;
                     }
                 }
@@ -87,15 +82,8 @@
             }catch(Exception $e){
                 $resultado="Error while sending request, reason: %s\n".$e->getMessage();
             }
-<<<<<<< HEAD
-=======
-
-        }while ($resultado==""||$validacion==false);
-        echo json_encode($resultado);
->>>>>>> 721b888be4e0615c101f1229c099b7cbd9f9a2d4
-
-        }while ($resultado==""||$validacion==false||$this->fin<5000);
-        echo json_encode($resultado);
+        }while ($resultado=="");
+        echo $resultado;
     }
 
 

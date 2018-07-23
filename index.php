@@ -60,12 +60,16 @@
                 <div class="row">
                   <div class="col-md">
                     <label>DESTINO</label> HEAD
-                    <input class="form-control" name="txtDestino" id="txtDestino" onkeyup="buscarCiudad(this.value)">
-                    <input type="hidden" name="txtCodigoDestino" id="txtCodigoDestino">                 
+                    <input class="form-control" name="txtDestino" id="txtDestino" role="tabpanel" aria-labelledby="lista" onkeyup="buscarCiudad(this.value)">
+                                     
  
 
-                    <div id="mostrarResultadoBuscar" class="float-right" name="mostrarResultadoBuscar" style="background: #000;width: 100%;height: 100%;z-index: 1;"></div>             
-
+                    <div id="mostrarResultadoBuscar" name="mostrarResultadoBuscar" style="background: red;width: 100%;height: 100%;z-index: 1;">      
+                      
+                        <div class="col-12">      
+                          <div class="list-group" id="lisaOpciones" role="listaOpciones">
+                          </div>
+                        
                   </div>
                 </div>
                 <div class="row" style="z-index: -1;">
@@ -167,13 +171,8 @@
         success:function(res){
           console.log("res ");
           console.log(res);
-
-          document.getElementById('mostrarResultadoBuscar').innerHTML = res;
-          var aux = Json.parse(res);
-          console.log(aux.nombre);
-          document.getElementById('resultados').innerHTML = res;
+          document.getElementById('lisaOpciones').innerHTML = res;
         }
       });
     }
-
   </script>
