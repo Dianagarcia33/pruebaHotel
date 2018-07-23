@@ -38,12 +38,10 @@
                     case 200:  # OK
                         $data = json_decode($resp,true);
 
-                        
-
                         //return $resp;
 
                     $datapost = new stdClass();
-             //  print_r($data);
+               print_r($data);
                //$datapost = array('checkIn'=>$resp['stay']['checkIn'], 'checkOut'=>$resp['stay']['checkOut']);
                 /*$datapost->occupancies = array(
                     array('rooms'=>$data['occupancies'][0]['rooms'], 'adults'=>$data['occupancies'][0]['adults'], 'children'=>$data['occupancies'][0]['children'], 'paxes'=>array(
