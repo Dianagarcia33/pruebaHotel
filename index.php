@@ -59,8 +59,10 @@
               <div class="container-fluid mt-3">
                 <div class="row">
                   <div class="col-md">
-                    <label>DESTINO</label>
-                    <input type="text" class="form-control" name="txtDestino" onkeyup="buscarCiudad(this.value)">                   
+                    <label>DESTINO</label> 
+                    <select class="form-control" name="cmbDestino" id="cmbDestino" onkeyup="buscarCiudad(this.value)">
+                      
+                    </select>                  
                   </div>
                 </div>
                 <div class="row">
@@ -163,7 +165,7 @@
         success:function(res){
           console.log("res ");
           console.log(res);
-          document.getElementById('resultados').innerHTML = res;
+          document.getElementById('cmbDestino').innerHTML = res;
         }
       });
     }
