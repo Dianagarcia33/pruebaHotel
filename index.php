@@ -60,9 +60,7 @@
                 <div class="row">
                   <div class="col-md">
                     <label>DESTINO</label> 
-                    <select class="form-control" name="cmbDestino" id="cmbDestino" onkeyup="buscarCiudad(this.value)">
-                      
-                    </select>                  
+                    <input class="form-control" name="txtDestino" id="txtDestino" onkeyup="buscarCiudad(this.value)">                 
                   </div>
                 </div>
                 <div class="row">
@@ -165,7 +163,7 @@
         success:function(res){
           console.log("res ");
           console.log(res);
-          document.getElementById('cmbDestino').innerHTML = res;
+          document.getElementById('resultados').innerHTML = res;
         }
       });
     }

@@ -21,8 +21,10 @@
         //$Secret="PARcy9M4FK";
         //$apiKey="m7rw3xqh73jfrmftzt6vspd7";
         //$Secret="7yAuq2f8GA";
-        $apiKey="mpqfutedsbz583qaryjz74sa";
-        $Secret="wDU5fsXg2P";
+        //$apiKey="mpqfutedsbz583qaryjz74sa";
+        //$Secret="wDU5fsXg2P";
+        $apiKey="dcbqt4fa3jzs7592hhqhdm3d";
+        $Secret="bqNxnNnTVQ";
         $signature = hash("sha256", $apiKey.$Secret.time());
         //$endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/locations/destinations?&content=cali&fields=all&";
         //$endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/locations/destinations?fields=Columbia&countryId=US&language=ENG&from=1&to=100";
@@ -56,7 +58,7 @@
                             $datapost->destination = array('datos'=>$data['destinations']);
                             for ($i=0; $i < count($datapost->destination['datos']) ; $i++) { 
                                 if (strpos($datapost->destination['datos'][$i]['name']['content'], $dato) !== false) {
-                                    $resultado.="<option value='".$datapost->destination['datos'][$i]['name']['content']."'>"$datapost->destination['datos'][$i]['name']['content']."</option>";
+                                    $resultado.=$datapost->destination['datos'][$i]['name']['content']."<br/>";
                                 }
                             }
                             break;
