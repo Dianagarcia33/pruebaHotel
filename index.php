@@ -63,7 +63,7 @@
                     <input class="form-control" name="txtDestino" id="txtDestino" role="tabpanel" aria-labelledby="lista" onkeyup="buscarCiudad(this.value)">
                     <input type="hidden" name="codigoDestino" id="codigoDestino">
                     <input type="hidden" name="accion" id="accion">
-                    <div id="mostrarResultadoBuscar" class="border" name="mostrarResultadoBuscar"  style="height: 100%;width: 100%;float: right;display: none;">  
+                    <div id="mostrarResultadoBuscar" class="border" name="mostrarResultadoBuscar"  style="display: none;position: fixed;z-index: 100;background: #fff;width: 100%;">  
 
                   </div>
               </div>
@@ -113,7 +113,7 @@
                 </div>
                 <div class="row  mt-3">
                   <div class="col-md">
-                    <div class="mx-auto" style="width: 200px;"><input type="button" name="btnEnviar" onclick="buscarHotel()" class="btn  btn-light mx-auto" value="Buscar"> 
+                    <div class="mx-auto" style="width: 300px;"><input type="button" name="btnEnviar" onclick="buscarHotel()" class="btn  btn-light mx-auto" value="Buscar"> 
                     </div>                  
                   </div>
                 </div>
@@ -171,24 +171,23 @@
             var elem = document.getElementById("myBar");   
             var width = 1;
             var id = setInterval(frame, 10);
+
+
             function frame() {
               if (width >= 100) {
                 clearInterval(id);
                   document.getElementById('resultados').innerHTML = res;
-                  document.getElementById('cargando').style.display = 'none';               
+                      
               } else {
                 width++; 
                 elem.style.width = width + '%'; 
               }
             }
          
-
+          
         }
          
       });
-      $("#mostrar").slideDown("slow");
-          document.getElementById('mostrar').style.display = 'block';
-          $("#mostrar").slideUp(2500);
     }
 
 

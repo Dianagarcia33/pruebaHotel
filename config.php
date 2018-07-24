@@ -9,10 +9,10 @@
 
 
     public function consultarDestino($dato){
-       // $apiKey = 'mpqfutedsbz583qaryjz74sa';
-        //$Secret = 'wDU5fsXg2P';
-        //$apiKey = "nfpx65hc8qh6dtqkq37gxm3x";
-        //$Secret = "RY8ehQ8cUs";
+    //    $apiKey = 'mpqfutedsbz583qaryjz74sa';
+      // $Secret = 'wDU5fsXg2P';
+        $apiKey = "nfpx65hc8qh6dtqkq37gxm3x";
+        $Secret = "RY8ehQ8cUs";
      //   $apiKey = 'x4snycwk7rzrezqjxya3esus';
        // $Secret = 'suMb6YAGXk';
        // $apiKey = "wpedjqjwv62vh84wze8srbqv";
@@ -25,8 +25,8 @@
         //$Secret="wDU5fsXg2P";
        // $apiKey="dcbqt4fa3jzs7592hhqhdm3d";
        // $Secret="bqNxnNnTVQ";
-        $apiKey="ddts9fx4nkd8nwdspaxbtqb9";
-        $Secret="Q6JXqyR5V9";
+      //  $apiKey="ddts9fx4nkd8nwdspaxbtqb9";
+       // $Secret="Q6JXqyR5V9";
         $signature = hash("sha256", $apiKey.$Secret.time());
         //$endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/locations/destinations?&content=cali&fields=all&";
         //$endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/locations/destinations?fields=Columbia&countryId=US&language=ENG&from=1&to=100";
@@ -89,8 +89,10 @@
 
 
     public function consultarHotel($codigoDestino){
-       // $apiKey = 'mpqfutedsbz583qaryjz74sa';
-        //$Secret = 'wDU5fsXg2P';
+      
+        
+        $apiKey = "nfpx65hc8qh6dtqkq37gxm3x";
+        $Secret = "RY8ehQ8cUs";
     //    print_r($_POST);
    //         $apiKey="u6zxr3fsrvyb78gv9m3w45gp";
      //   $Secret="PARcy9M4FK";
@@ -98,8 +100,8 @@
        //  $apiKey="m7rw3xqh73jfrmftzt6vspd7";
      //   $Secret="7yAuq2f8GA";
 
-        $apiKey="ddts9fx4nkd8nwdspaxbtqb9";
-        $Secret="Q6JXqyR5V9";
+      //  $apiKey="ddts9fx4nkd8nwdspaxbtqb9";
+        //$Secret="Q6JXqyR5V9";
         //$Secret = "RY8ehQ8cUs";
         //$apiKey = 'x4snycwk7rzrezqjxya3esus';
         //$Secret = 'suMb6YAGXk';
@@ -137,7 +139,8 @@
                                     //echo json_encode(array('codigo' => $datapost->destination['datos'][$i]['code'],
                                     //'nombre'=>$datapost->destination['datos'][$i]['name']['content']));
                                     //$validacion=true;
-                                    $resultado.='<div><a  class="list-group-item ">'.$datapost->destination['datos'][$i]['name']['content'].'</a><a  class="list-group-item list-group-item-action" id="listDestino" data-toggle="list" href="#txtDestino" role="tab" aria-controls="profile">'.$datapost->destination['datos'][$i]['description']['content'].'</a></div><br/>'.$i;
+                                    $resultado.='<div><a  class="list-group-item ">'.$datapost->destination['datos'][$i]['name']['content'].'</a><a  class="list-group-item list-group-item-action" id="listDestino" data-toggle="list" href="#txtDestino" role="tab" aria-controls="profile">'.$datapost->destination['datos'][$i]['description']['content'].'</a></div><br/>';
+
                             }
                         echo "<h1>Resultados: ".$i."</h1>";
                         //$datapost = new stdClass();
