@@ -14,23 +14,23 @@
    <div class="container-fluid">
     <div class="row h-100">
         
-        <nav class="col-sm-2 d-none d-md-block bg-light sidebar ">
+     <nav class="col-sm-2 d-none d-md-block  sidebar bg-light" >
     <div class="sidebar-sticky" style="margin-top: 30px">
 
       <h4 style="text-align: center;">PASEO TRAVEL</h4>
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom " ></div>
 
       <ul class="nav flex-column ml-3 hover">
-        <li class="nav-item border">
+        <li class="nav-item ">
 
-          <a class="nav-link active" href="#">
+          <a class="nav-link active" href="#" style="color: #000;">
             Dashboard
           </a>
 
         </li>
 
-        <li class="nav-item border ">
-          <a class="nav-link" href="#">
+        <li class="nav-item  ">
+          <a class="nav-link" href="#" style="color: #000;">
             Usuarios
           </a>
         </li>
@@ -57,22 +57,18 @@
           <div class="container ">
             <form name="campos" method="post" id="frmHotel">
               <div class="container-fluid mt-3">
-                <div class="row">
-                  <div class="col-md">
-                    <label>DESTINO</label> HEAD
+                <div class="row" >
+                  <div class="col-md" >
+                    <label>DESTINO</label>
                     <input class="form-control" name="txtDestino" id="txtDestino" role="tabpanel" aria-labelledby="lista" onkeyup="buscarCiudad(this.value)">
-                                     
- 
+                    <input type="hidden" name="codigoDestino" id="codigoDestino">
+                    <input type="hidden" name="accion" id="accion">
+                    <div id="mostrarResultadoBuscar" class="border" name="mostrarResultadoBuscar"  style="height: 100%;width: 100%;float: right;display: none;">  
 
-                    <div id="mostrarResultadoBuscar" name="mostrarResultadoBuscar" style="background: red;width: 100%;height: 100%;z-index: 1;">      
-                      
-                        <div class="col-12">      
-                          <div class="list-group" id="lisaOpciones" role="listaOpciones">
-                          </div>
-                        
                   </div>
-                </div>
-                <div class="row" style="z-index: -1;">
+              </div>
+            </div>
+                <div class="row">
                   <div class="col-md">
                     <label>CHECK-IN</label>
                     <input type="date" class="form-control" name="dateDheckin">
@@ -121,6 +117,16 @@
                     </div>                  
                   </div>
                 </div>
+                <div class="row mt-3" id="cargando" style="display: none;"> 
+                   <div class="progress mx-auto"  id="myProgress" style="height:10px;width: 400px;">
+                  <div class="progress-bar"  id="myBar" style="width:5%"></div>
+                </div>
+                  <div id="mostrar" style="margin-top: 20px;">
+                    <p>Carga Completa</p>
+                  </div>
+                </div>
+
+               
               </div>
 
 
@@ -143,24 +149,49 @@
 
       </div>
     </div>  
+
+
+
+
   </div>
 
+ 
 </body>
 </html>
 <script>
-    function buscarHotel(valor){
-      console.log(valor);
+    function buscarHotel(){
+      document.getElementById('accion').value = 'buscarHotel';
       $.ajax({
         data:$('#frmHotel').serialize(),
         type: 'post',
         url: 'search.php',
         success:function(res){
           console.log(res);
-          document.getElementById('resultados').innerHTML = res;
+          document.getElementById('cargando').style.display = "block";          
+            var elem = document.getElementById("myBar");   
+            var width = 1;
+            var id = setInterval(frame, 10);
+            function frame() {
+              if (width >= 100) {
+                clearInterval(id);
+                  document.getElementById('resultados').innerHTML = res;
+                  document.getElementById('cargando').style.display = 'none';               
+              } else {
+                width++; 
+                elem.style.width = width + '%'; 
+              }
+            }
+         
 
         }
+         
       });
+      $("#mostrar").slideDown("slow");
+          document.getElementById('mostrar').style.display = 'block';
+          $("#mostrar").slideUp(2500);
     }
+
+
 
     function buscarCiudad(valor){
       console.log(valor);
@@ -171,8 +202,18 @@
         success:function(res){
           console.log("res ");
           console.log(res);
-          document.getElementById('lisaOpciones').innerHTML = res;
+          document.getElementById('mostrarResultadoBuscar').style.display = "block";
+          document.getElementById('mostrarResultadoBuscar').class = "float-left";
+          document.getElementById('mostrarResultadoBuscar').innerHTML = res;
         }
       });
+    }
+
+
+    function destino(idDestino,cuidad){
+      document.getElementById('mostrarResultadoBuscar').style.display = "none";
+      document.getElementById('txtDestino').innerHTML = cuidad;
+      document.getElementById('codigoDestino').innerHTML = idDestino;
+
     }
   </script>

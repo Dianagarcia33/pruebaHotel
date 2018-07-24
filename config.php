@@ -9,22 +9,22 @@
 
 
     public function consultarDestino($dato){
-        //$apiKey = 'mpqfutedsbz583qaryjz74sa';
+       // $apiKey = 'mpqfutedsbz583qaryjz74sa';
         //$Secret = 'wDU5fsXg2P';
         //$apiKey = "nfpx65hc8qh6dtqkq37gxm3x";
         //$Secret = "RY8ehQ8cUs";
-        //$apiKey = 'x4snycwk7rzrezqjxya3esus';
-        //$Secret = 'suMb6YAGXk';
-        //$apiKey = "wpedjqjwv62vh84wze8srbqv";
+     //   $apiKey = 'x4snycwk7rzrezqjxya3esus';
+       // $Secret = 'suMb6YAGXk';
+       // $apiKey = "wpedjqjwv62vh84wze8srbqv";
         //$Secret = "AqWSXwmaN9";
-        //$apiKey="u6zxr3fsrvyb78gv9m3w45gp";
+      //  $apiKey="u6zxr3fsrvyb78gv9m3w45gp";
         //$Secret="PARcy9M4FK";
-        //$apiKey="m7rw3xqh73jfrmftzt6vspd7";
+       // $apiKey="m7rw3xqh73jfrmftzt6vspd7";
         //$Secret="7yAuq2f8GA";
         //$apiKey="mpqfutedsbz583qaryjz74sa";
         //$Secret="wDU5fsXg2P";
-        //$apiKey="dcbqt4fa3jzs7592hhqhdm3d";
-        //$Secret="bqNxnNnTVQ";
+       // $apiKey="dcbqt4fa3jzs7592hhqhdm3d";
+       // $Secret="bqNxnNnTVQ";
         $apiKey="ddts9fx4nkd8nwdspaxbtqb9";
         $Secret="Q6JXqyR5V9";
         $signature = hash("sha256", $apiKey.$Secret.time());
@@ -38,7 +38,7 @@
             $resultado="";
             $this->fin+=1000;
             $this->inicio=$this->fin-999;
-            echo "inicio ".$this->inicio." fin ".$this->fin;
+           // echo "inicio ".$this->inicio." fin ".$this->fin;
             $endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/locations/destinations?fields=all&language=ENG&from=".$this->inicio."&to=".$this->fin;
             $validacion=false;
             try{
@@ -65,7 +65,7 @@
                                     //echo json_encode(array('codigo' => $datapost->destination['datos'][$i]['code'],
                                     //'nombre'=>$datapost->destination['datos'][$i]['name']['content']));
                                     //$validacion=true;
-                                    $resultado.='<a class="list-group-item list-group-item-action" id="listDestino" data-toggle="list" href="#txtDestino" role="tab" aria-controls="profile">'.$datapost->destination['datos'][$i]['name']['content'].'</a>'.
+                                    $resultado.='<a onclick="destino(\''.$datapost->destination['datos'][$i]['code'].'\',\''.$datapost->destination['datos'][$i]['name']['content'].'\');" class="list-group-item list-group-item-action" id="listDestino" data-toggle="list" href="#txtDestino" role="tab" aria-controls="profile">'.$datapost->destination['datos'][$i]['name']['content'].'</a>'.
                                     '<input type="hidden" name="txtCodigoDestino" id="txtCodigoDestino" value="'.
                                     $datapost->destination['datos'][$i]['code'].'"">'.
                                     "<br/>";
@@ -88,20 +88,28 @@
 
 
 
-    public function consultarHotel(){
-        $apiKey = 'mpqfutedsbz583qaryjz74sa';
-        $Secret = 'wDU5fsXg2P';
-        print_r($_POST);
+    public function consultarHotel($codigoDestino){
+       // $apiKey = 'mpqfutedsbz583qaryjz74sa';
+        //$Secret = 'wDU5fsXg2P';
+    //    print_r($_POST);
+   //         $apiKey="u6zxr3fsrvyb78gv9m3w45gp";
+     //   $Secret="PARcy9M4FK";
         //$apiKey = "nfpx65hc8qh6dtqkq37gxm3x";
+       //  $apiKey="m7rw3xqh73jfrmftzt6vspd7";
+     //   $Secret="7yAuq2f8GA";
+
+        $apiKey="ddts9fx4nkd8nwdspaxbtqb9";
+        $Secret="Q6JXqyR5V9";
         //$Secret = "RY8ehQ8cUs";
         //$apiKey = 'x4snycwk7rzrezqjxya3esus';
         //$Secret = 'suMb6YAGXk';
         $signature = hash("sha256", $apiKey.$Secret.time());
         //$endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/locations/destinations?&content=cali&fields=all&";
         //$endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/locations/destinations?fields=Columbia&countryId=US&language=ENG&from=1&to=100";
-        $endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/locations/destinations?fields=all&language=ITA&from=125&to=250";
-        //$endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/locations/destinations?fields=all&language=ENG&from=1&to=100&Code=Manizales";
+        //$endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/locations/destinations?fields=all&language=ENG&from=125&to=250";
+        $endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/hotels?fields=all&destinationCode=".$codigoDestino."&language=ENG&from=1&to=1000";
         //$endpoint = "https://api.test.hotelbeds.com/hotel-content-api/1.0/hotels?fields=all&language=ENG&from=10&to=100";
+
         //$endpoint = "https://api.test.hotelbeds.com/hotel-api/1.0/bookings?start=2015-09-10&end=2015-09-15&filterType=CREATION&status=CONFIRMED&from=1&to=25";
 
         try{
@@ -116,10 +124,22 @@
             $resp = curl_exec($curl);
             // Check HTTP status code
             if (!curl_errno($curl)) {
+
                 switch ($http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE)) {
                     case 200:  # OK
                         $data = json_decode($resp,true);
-                        //return $resp;
+                      //  print_r($data);
+                            //return $resp;
+                            $datapost = new stdClass();
+                            $datapost->destination = array('datos'=>$data['hotels']);
+                            for ($i=0; $i < count($datapost->destination['datos']) ; $i++) { 
+                                    //$resultado.=$datapost->destination['datos'][$i]['name']['content']."<br/>";
+                                    //echo json_encode(array('codigo' => $datapost->destination['datos'][$i]['code'],
+                                    //'nombre'=>$datapost->destination['datos'][$i]['name']['content']));
+                                    //$validacion=true;
+                                    $resultado.='<div><a  class="list-group-item ">'.$datapost->destination['datos'][$i]['name']['content'].'</a><a  class="list-group-item list-group-item-action" id="listDestino" data-toggle="list" href="#txtDestino" role="tab" aria-controls="profile">'.$datapost->destination['datos'][$i]['description']['content'].'</a></div><br/>'.$i;
+                            }
+                        echo "<h1>Resultados: ".$i."</h1>";
                         //$datapost = new stdClass();
                         //$datapost = array('checkIn'=>$resp['stay']['checkIn'], 'checkOut'=>$resp['stay']['checkOut']);
                         /*$datapost->occupancies = array(
@@ -128,8 +148,7 @@
                             //array('type'=>'AD','age'=>30)
                         )));*/
                         //$datapost->destination = array('datos'=>$data['hotels']);
-                        print_r($data);
-                        //$datapost->hotels = array('hotel'=>$data['hotels']['hotel']);
+                     //   print_r($data);
                         //$datapost->filter = array('maxRooms'=>5,'minRate'=>100.000,'maxRate'=>1700.000,'maxRatesPerRoom'=>2);
                         //return $resp;
                         //print_r($datapost->destination['datos'][0]['name']['content']);
@@ -145,6 +164,7 @@
         }catch(Exception $e){
             printf("Error while sending request, reason: %s\n",$e->getMessage());
         }
+        echo $resultado;
     }
 
 }

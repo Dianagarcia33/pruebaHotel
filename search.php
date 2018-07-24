@@ -1,6 +1,8 @@
 <?php 
-	
+	error_reporting(E_ALL ^ E_NOTICE);
 	include_once("config.php");
+
+//print_r($_POST);
 
 	$conexion = new Config();
 	switch ($_POST['accion']) {
@@ -10,8 +12,9 @@
 			break;
 		
 		case 'buscarHotel':
-			echo "<h1>Resultado</h1>";
-			$result = $conexion->consultarHotel();
+			
+			$result = $conexion->consultarHotel($_POST['txtCodigoDestino']);
+		//	$result = $conexion->consultarHotel();
 			break;
 	}
 	
