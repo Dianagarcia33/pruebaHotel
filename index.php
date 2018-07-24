@@ -113,7 +113,7 @@
                 </div>
                 <div class="row  mt-3">
                   <div class="col-md">
-                    <div class="mx-auto" style="width: 300px;"><input type="button" name="btnEnviar" onclick="buscarHotel()" class="btn  btn-light mx-auto" value="Buscar"> 
+                    <div class="mx-auto" style="width: 300px;"><input type="button" disabled="true" id="btnEnviar" name="btnEnviar" onclick="buscarHotel()" class="btn  btn-light mx-auto" value="Buscar"> 
                     </div>                  
                   </div>
                 </div>
@@ -193,19 +193,24 @@
 
 
     function buscarCiudad(valor){
-      console.log(valor);
-      $.ajax({
-        data:"valor="+valor+"&accion=buscarCiudad",
-        type: 'post',
-        url: 'search.php',
-        success:function(res){
-          console.log("res ");
-          console.log(res);
-          document.getElementById('mostrarResultadoBuscar').style.display = "block";
-          document.getElementById('mostrarResultadoBuscar').class = "float-left";
-          document.getElementById('mostrarResultadoBuscar').innerHTML = res;
-        }
-      });
+      //valida si hay algo en campo de destino
+      if (valor!=="") {
+        document.getElementById("btnEnviar").disabled=false;
+        $.ajax({
+          data:"valor="+valor+"&accion=buscarCiudad",
+          type: 'post',
+          url: 'search.php',
+          success:function(res){
+            console.log("res ");
+            console.log(res);
+            document.getElementById('mostrarResultadoBuscar').style.display = "block";
+            document.getElementById('mostrarResultadoBuscar').class = "float-left";
+            document.getElementById('mostrarResultadoBuscar').innerHTML = res;
+          }
+        });
+      }else{
+        document.getElementById("btnEnviar").disabled=true;
+      }
     }
 
 
